@@ -2,12 +2,9 @@ import Link from "next/link";
 import {
   Vote,
   ShieldCheck,
-  BarChart3,
-  CheckCircle2,
   HelpCircle,
   ArrowRight,
   Sparkles,
-  Layers,
 } from "lucide-react";
 
 import { ElectionStatusBadge } from "@/components/election-status-badge";
@@ -34,7 +31,7 @@ export default async function HomePage() {
         </h1>
 
         <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-          Chega de "voto útil" ou candidatos divisionistas. Ordene seus candidatos favoritos de 1 a
+          Chega de &quot;voto útil&quot; ou candidatos divisionistas. Ordene seus candidatos favoritos de 1 a
           5, receba um código criptográfico de validação e acompanhe as rodadas do segundo turno
           instantâneo (IRV).
         </p>

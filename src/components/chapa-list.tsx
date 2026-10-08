@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, Filter, Layers } from "lucide-react";
+import { Search, Filter } from "lucide-react";
 
 import { ChapaCard } from "@/components/chapa-card";
 import { EmptyState } from "@/components/empty-state";

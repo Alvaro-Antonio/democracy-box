@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Users, Layers, Vote, ShieldCheck, ArrowRight } from "lucide-react";
+import { Users, Layers, Vote, ArrowRight } from "lucide-react";
 
 import { ElectionStatusBadge } from "@/components/election-status-badge";
 import { PageHeader } from "@/components/page-header";

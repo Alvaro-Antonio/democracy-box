@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { Check, Vote, Loader2, AlertTriangle } from "lucide-react";
+import { Vote, Loader2, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 
 import { castVote } from "@/app/actions/vote";
@@ -127,7 +127,7 @@ export function VotePanel({ chapas, candidates }: VotePanelProps) {
               Sim, Depositar Voto
             </AlertDialogAction>
           </AlertDialogFooter>
-        </AlertDialog>
+        </AlertDialogContent>
       </AlertDialog>
     </div>
   );

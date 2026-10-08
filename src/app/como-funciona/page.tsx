@@ -1,9 +1,7 @@
 import Link from "next/link";
 import {
-  HelpCircle,
   Vote,
   Sparkles,
-  ShieldCheck,
   CheckCircle2,
   XCircle,
   ArrowRight,
@@ -62,7 +60,7 @@ export default async function HowItWorksPage() {
             <CardTitle className="text-base font-bold">1. O Eleitor Ordena</CardTitle>
           </CardHeader>
           <CardContent className="text-sm text-muted-foreground leading-relaxed">
-            Em vez de ficar limitado ao dilema do "voto útil", você ranqueia: 1ª opção, 2ª opção, 3ª
+            Em vez de ficar limitado ao dilema do &quot;voto útil&quot;, você ranqueia: 1ª opção, 2ª opção, 3ª
             opção... Você vota no seu candidato ideal sem medo de desperdiçar seu voto.
           </CardContent>
         </Card>
@@ -104,11 +102,11 @@ export default async function HowItWorksPage() {
           <div className="space-y-3 p-4 rounded-xl border border-rose-500/20 bg-rose-500/5">
             <h3 className="font-bold text-rose-400 flex items-center gap-2">
               <XCircle className="size-4" />
-              Voto Tradicional ("First-Past-The-Post")
+              Voto Tradicional (&quot;First-Past-The-Post&quot;)
             </h3>
             <ul className="space-y-2 text-muted-foreground list-disc pl-5">
               <li>Candidatos com 25% a 30% dos votos podem vencer se a oposição for dividida.</li>
-              <li>Gera o efeito "spoiler" ou candidato divisionista, que rouba votos de aliados.</li>
+              <li>Gera o efeito &quot;spoiler&quot; ou candidato divisionista, que rouba votos de aliados.</li>
               <li>Estimula o voto estratégico por medo, em vez da expressão sincera do eleitor.</li>
               <li>Exige segundo turno presencial caro semanas depois.</li>
             </ul>

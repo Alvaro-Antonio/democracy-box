@@ -1,4 +1,4 @@
-import { Trophy, CheckCircle2, Award } from "lucide-react";
+import { Trophy, Award } from "lucide-react";
 
 import { CandidateAvatar } from "@/components/candidate-avatar";
 import type { IrvResult } from "@/lib/ranked/irv";
