@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, Clock, Lock, Vote } from "lucide-react";
+import { CheckCircle2, Clock, Lock } from "lucide-react";
 
 import { EmptyState } from "@/components/empty-state";
 import { PageHeader } from "@/components/page-header";
