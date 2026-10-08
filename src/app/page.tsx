@@ -1,103 +1,136 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  Vote,
+  ShieldCheck,
+  BarChart3,
+  CheckCircle2,
+  HelpCircle,
+  ArrowRight,
+  Sparkles,
+  Layers,
+} from "lucide-react";
 
-export default function Home() {
+import { ElectionStatusBadge } from "@/components/election-status-badge";
+import { Button } from "@/components/ui/button";
+import { getElectionSettings } from "@/lib/election/queries";
+
+export default async function HomePage() {
+  const settings = await getElectionSettings();
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="space-y-16 py-6 sm:py-12">
+      {/* Hero Section */}
+      <section className="text-center space-y-6 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary">
+          <Sparkles className="size-3.5" />
+          Democracia Transparente &amp; Aberta
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-foreground leading-tight">
+          O Futuro das Eleições com{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-emerald-400 to-amber-400">
+            Voto por Ranking
+          </span>
+        </h1>
+
+        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          Chega de "voto útil" ou candidatos divisionistas. Ordene seus candidatos favoritos de 1 a
+          5, receba um código criptográfico de validação e acompanhe as rodadas do segundo turno
+          instantâneo (IRV).
+        </p>
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+          <Link href="/votar" className="w-full sm:w-auto">
+            <Button size="lg" className="w-full font-bold shadow-xl">
+              <Vote className="size-5 mr-2" />
+              Entrar na Cabine de Votação
+            </Button>
+          </Link>
+
+          <Link href="/como-funciona" className="w-full sm:w-auto">
+            <Button variant="outline" size="lg" className="w-full font-semibold">
+              <HelpCircle className="size-5 mr-2" />
+              Como Funciona o IRV
+            </Button>
+          </Link>
+        </div>
+
+        <div className="pt-2 flex justify-center">
+          <ElectionStatusBadge status={settings.status} />
+        </div>
+      </section>
+
+      {/* Como funciona o fluxo do sistema */}
+      <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="p-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-md space-y-3">
+          <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-bold text-primary">
+            01
+          </div>
+          <h3 className="font-bold text-base">Candidatos &amp; Chapas</h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Até 5 candidatos cadastrados. O sistema gera automaticamente todas as permutações
+            hierárquicas numeradas em chapas oficiais.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-md space-y-3">
+          <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-bold text-primary">
+            02
+          </div>
+          <h3 className="font-bold text-base">Voto do Eleitor</h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Autenticado por e-mail ou Magic Link, o eleitor escolhe sua chapa com a ordem completa
+            de preferências. Apenas 1 voto por cidadão.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-md space-y-3">
+          <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-bold text-primary">
+            03
+          </div>
+          <h3 className="font-bold text-base">Auditoria Anônima</h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Um código no formato <code>VR-XXXX-XXXX-XXXX</code> comprova que a cédula está na urna
+            sem expor a identidade de quem votou.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-2xl border border-border/60 bg-card/40 backdrop-blur-md space-y-3">
+          <div className="size-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center font-mono font-bold text-primary">
+            04
+          </div>
+          <h3 className="font-bold text-base">Apuração Instant-Runoff</h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Eliminações sucessivas do último colocado com transferência automática de votos até
+            atingir mais de 50% de apoio popular.
+          </p>
+        </div>
+      </section>
+
+      {/* Chamada para Ação */}
+      <section className="p-8 sm:p-12 rounded-3xl border border-primary/30 bg-gradient-to-r from-primary/10 via-card/80 to-primary/5 text-center space-y-6">
+        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+          Pronto para experimentar a democracia do ranking?
+        </h2>
+        <p className="text-sm text-muted-foreground max-w-xl mx-auto">
+          Participe agora mesmo da demonstração, audite o seu comprovante e confira como a apuração
+          acontece de forma limpa e transparente.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
+          <Link href="/votar">
+            <Button size="lg" className="font-bold">
+              Depositar Meu Voto
+              <ArrowRight className="size-4 ml-2" />
+            </Button>
+          </Link>
+          <Link href="/validar">
+            <Button variant="outline" size="lg">
+              <ShieldCheck className="size-4 mr-2" />
+              Validar um Código
+            </Button>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
