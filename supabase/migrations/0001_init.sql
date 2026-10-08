@@ -156,7 +156,7 @@ begin
     insert into public.voter_receipts (voter_id) values (v_voter_id);
   exception when unique_violation then
     raise exception 'ALREADY_VOTED: Eleitor já realizou o voto nesta eleição.' using errcode = 'P0001';
-  end if;
+  end;
 
   -- 4. Gera código VR-XXXX-XXXX-XXXX com retry em caso de colisão
   loop
