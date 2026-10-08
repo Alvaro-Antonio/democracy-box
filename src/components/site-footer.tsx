@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Vote, Github } from "lucide-react";
+import { Vote, Code2 } from "lucide-react";
 
 export function SiteFooter() {
   return (
@@ -23,7 +23,7 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             className="flex items-center gap-1 hover:text-foreground transition-colors"
           >
-            <Github className="size-4" />
+            <Code2 className="size-4" />
             Código Aberto
           </a>
         </div>
