@@ -4,6 +4,7 @@ import { Vote, Shield, BarChart3, CheckSquare, HelpCircle } from "lucide-react";
 import { adminEmails } from "@/lib/env.server";
 import { getCurrentUser } from "@/lib/auth/admin";
 import { isAdminEmail } from "@/lib/auth/admin-emails";
+import { signOut } from "@/app/actions/auth";
 import { Button } from "@/components/ui/button";
 
 export async function SiteHeader() {
@@ -58,7 +59,7 @@ export async function SiteHeader() {
               <span className="text-xs text-muted-foreground hidden sm:inline max-w-[140px] truncate">
                 {user.email}
               </span>
-              <form action="/api/auth/signout" method="POST">
+              <form action={signOut}>
                 <Button variant="outline" size="sm" type="submit">
                   Sair
                 </Button>
