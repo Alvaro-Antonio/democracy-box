@@ -243,14 +243,16 @@ export function VotePanel({ chapas, candidates }: VotePanelProps) {
               <AlertTriangle className="size-5 text-amber-400" />
               Confirmar Voto na Chapa #{selectedChapa ? formatChapaNumber(selectedChapa.number) : ""}
             </AlertDialogTitle>
-            <AlertDialogDescription className="space-y-2">
-              <p>
-                Atenção: uma vez confirmado, o seu voto será registrado e{" "}
-                <strong>não poderá ser alterado nem cancelado</strong>.
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Um código único de validação será gerado instantaneamente na sua tela.
-              </p>
+            <AlertDialogDescription asChild>
+              <div className="space-y-2 text-sm text-muted-foreground">
+                <p>
+                  Atenção: uma vez confirmado, o seu voto será registrado e{" "}
+                  <strong>não poderá ser alterado nem cancelado</strong>.
+                </p>
+                <p className="text-xs">
+                  Um código único de validação será gerado instantaneamente na sua tela.
+                </p>
+              </div>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
