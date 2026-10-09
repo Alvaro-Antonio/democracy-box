@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 import { requireUser } from "@/lib/auth/admin";
+import { sendVoteReceiptEmail } from "@/lib/email/vote-receipt";
 import { mapRpcError, toActionResult } from "@/lib/errors";
 import { createServerSupabase } from "@/lib/supabase/server";
 import type { ActionResult } from "@/types/domain";
@@ -14,9 +15,9 @@ const voteSchema = z.object({
 
 export async function castVote(
   chapaId: string,
-): Promise<ActionResult<{ code: string; chapaNumber: number }>> {
+): Promise<ActionResult<{ code: string; chapaNumber: number; emailSentTo: string | null }>> {
   return toActionResult(async () => {
-    await requireUser();
+    const user = await requireUser();
 
     const parsed = voteSchema.safeParse({ chapaId });
     if (!parsed.success) {
@@ -45,10 +46,21 @@ export async function castVote(
       throw mapRpcError(rpcError);
     }
 
+    // 3. Dispara o envio do comprovante por e-mail para o eleitor
+    const voterEmail = user.email || null;
+    if (voterEmail) {
+      await sendVoteReceiptEmail({
+        to: voterEmail,
+        code,
+        chapaNumber: chapa.number,
+      });
+    }
+
     revalidatePath("/votar");
     return {
       code,
       chapaNumber: chapa.number,
+      emailSentTo: voterEmail,
     };
   });
 }

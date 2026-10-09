@@ -32,7 +32,11 @@ export function VotePanel({ chapas, candidates }: VotePanelProps) {
   const [selectedChapa, setSelectedChapa] = useState<Chapa | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
-  const [voteReceipt, setVoteReceipt] = useState<{ code: string; chapaNumber: number } | null>(null);
+  const [voteReceipt, setVoteReceipt] = useState<{
+    code: string;
+    chapaNumber: number;
+    emailSentTo: string | null;
+  } | null>(null);
 
   // Filtra as chapas com base na ordem de preferência que o eleitor construiu
   const matchingChapas = useMemo(() => {
@@ -101,7 +105,13 @@ export function VotePanel({ chapas, candidates }: VotePanelProps) {
   };
 
   if (voteReceipt) {
-    return <VoteCodeDisplay code={voteReceipt.code} chapaNumber={voteReceipt.chapaNumber} />;
+    return (
+      <VoteCodeDisplay
+        code={voteReceipt.code}
+        chapaNumber={voteReceipt.chapaNumber}
+        emailSentTo={voteReceipt.emailSentTo}
+      />
+    );
   }
 
   const handleConfirmVote = () => {
@@ -112,7 +122,7 @@ export function VotePanel({ chapas, candidates }: VotePanelProps) {
       if (result.ok) {
         setVoteReceipt(result.data);
         setConfirmOpen(false);
-        toast.success("Voto computado com sucesso!");
+        toast.success("Voto computado com sucesso! Comprovante enviado para o seu e-mail.");
       } else {
         toast.error(result.error.message);
         setConfirmOpen(false);
