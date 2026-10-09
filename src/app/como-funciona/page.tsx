@@ -12,6 +12,10 @@ import {
   Users,
   Repeat,
   ShieldCheck,
+  Landmark,
+  ExternalLink,
+  FileText,
+  Scale,
 } from "lucide-react";
 
 import { PageHeader } from "@/components/page-header";
@@ -537,6 +541,153 @@ export default async function HowItWorksPage() {
               <li>Incentiva campanhas propositivas: candidatos disputam as 2ªs opções uns dos outros.</li>
               <li>Realiza o segundo turno instantaneamente numa única ida às urnas.</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO ESPECIAL: APLICAÇÃO DO MODELO NO BRASIL E A PEC 125/2011 */}
+      <section className="rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/20 via-card/80 to-card/90 p-6 sm:p-10 space-y-8 backdrop-blur-xl shadow-2xl">
+        <div className="max-w-3xl space-y-3">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+            <Landmark className="size-3.5" /> Cenário Nacional • Reforma Eleitoral
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+            O Voto Preferencial no Brasil: O Debate na PEC 125/2011
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            O sistema de Voto por Ranking (conhecido no Brasil como <strong>voto preferencial</strong>) 
+            não é apenas uma teoria internacional: ele esteve no centro dos debates da 
+            <strong> Reforma Eleitoral de 2021</strong> no Congresso Nacional e quase foi implementado nas eleições brasileiras.
+          </p>
+        </div>
+
+        {/* Linha do Tempo / Resumo dos Acontecimentos */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {/* Etapa 1: Aprovação na Comissão */}
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                Agosto de 2021
+              </span>
+              <FileText className="size-4 text-emerald-400" />
+            </div>
+            <h3 className="font-bold text-base text-foreground">Aprovação na Comissão Especial</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              A relatora da PEC 125/2011, deputada Renata Abreu (Podemos-SP), incluiu no parecer a 
+              adoção do voto preferencial para cargos do Poder Executivo (Presidente, Governadores e Prefeitos). 
+              A comissão especial aprovou a proposta, prevendo que o eleitor pudesse ranquear até 5 opções na urna eletrônica.
+            </p>
+          </div>
+
+          {/* Etapa 2: A Votação no Plenário */}
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">
+                Setembro de 2021
+              </span>
+              <Scale className="size-4 text-rose-400" />
+            </div>
+            <h3 className="font-bold text-base text-foreground">Rejeição no Plenário da Câmara</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Ao ir a votação no Plenário, líderes partidários aprovaram um destaque que retirou o voto 
+              preferencial do texto final. O plenário manteve o modelo tradicional de dois turnos, 
+              sob o argumento de evitar mudanças drásticas na cultura eleitoral consolidada desde 1988.
+            </p>
+          </div>
+
+          {/* Etapa 3: Potencial da Urna Eletrônica */}
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                Potencial Tecnológico
+              </span>
+              <Sparkles className="size-4 text-sky-400" />
+            </div>
+            <h3 className="font-bold text-base text-foreground">A Urna Eletrônica Brasileira</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Diferente de países que ainda contam cédulas de papel manualmente, o Brasil possui 
+              infraestrutura biométrica e urnas digitais de ponta. O TSE poderia apurar as rodadas do 
+              Instant-Runoff Voting em minutos, gerando economia estimada em mais de R$ 300 milhões com a extinção do segundo turno físico.
+            </p>
+          </div>
+        </div>
+
+        {/* Quadro de Referências Oficiais Clicáveis */}
+        <div className="rounded-2xl border border-border/70 bg-muted/20 p-5 sm:p-6 space-y-4">
+          <div className="flex items-center justify-between border-b border-border/50 pb-3">
+            <h3 className="text-sm sm:text-base font-bold text-foreground flex items-center gap-2">
+              <FileText className="size-4 text-primary" />
+              Fontes Oficiais e Referências da Tramitação
+            </h3>
+            <span className="text-xs text-muted-foreground font-mono">Congresso Nacional</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* Fonte 1 */}
+            <a
+              href="https://www.camara.leg.br/noticias/791721-comissao-especial-aprova-proposta-que-altera-regras-eleitorais/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-3.5 rounded-xl border border-border/70 bg-background/70 hover:bg-card hover:border-emerald-500/50 transition-all flex flex-col justify-between gap-2.5 shadow-sm"
+            >
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs text-emerald-400 font-semibold">
+                  <span>Agência Câmara de Notícias</span>
+                  <ExternalLink className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+                <p className="text-xs font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                  Comissão especial aprova proposta que altera regras eleitorais
+                </p>
+                <p className="text-[11px] text-muted-foreground line-clamp-2">
+                  Notícia oficial sobre o parecer da deputada Renata Abreu que previa o voto preferencial para o Executivo.
+                </p>
+              </div>
+              <span className="text-[10px] text-muted-foreground/80 font-mono">camara.leg.br</span>
+            </a>
+
+            {/* Fonte 2 */}
+            <a
+              href="https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2039340&filename=Tramitacao-PEC%20125/2011"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-3.5 rounded-xl border border-border/70 bg-background/70 hover:bg-card hover:border-emerald-500/50 transition-all flex flex-col justify-between gap-2.5 shadow-sm"
+            >
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs text-emerald-400 font-semibold">
+                  <span>Íntegra da Tramitação Oficial</span>
+                  <ExternalLink className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+                <p className="text-xs font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                  PEC 125/2011 — Parecer Oficial da Relatora
+                </p>
+                <p className="text-[11px] text-muted-foreground line-clamp-2">
+                  Texto legislativo integral apresentado na Comissão Especial disciplinando a votação em ordem de preferências.
+                </p>
+              </div>
+              <span className="text-[10px] text-muted-foreground/80 font-mono">camara.leg.br (PDF/Teor)</span>
+            </a>
+
+            {/* Fonte 3 */}
+            <a
+              href="https://istoedinheiro.com.br/camara-barra-voto-preferencial-e-fim-do-segundo-turno-na-reforma-eleitoral"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-3.5 rounded-xl border border-border/70 bg-background/70 hover:bg-card hover:border-emerald-500/50 transition-all flex flex-col justify-between gap-2.5 shadow-sm"
+            >
+              <div className="space-y-1">
+                <div className="flex items-center justify-between text-xs text-emerald-400 font-semibold">
+                  <span>Revista IstoÉ Dinheiro</span>
+                  <ExternalLink className="size-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+                <p className="text-xs font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+                  Câmara barra voto preferencial e fim do 2º turno
+                </p>
+                <p className="text-[11px] text-muted-foreground line-clamp-2">
+                  Cobertura jornalística da votação em plenário que manteve a realização de segundo turno tradicional.
+                </p>
+              </div>
+              <span className="text-[10px] text-muted-foreground/80 font-mono">istoedinheiro.com.br</span>
+            </a>
           </div>
         </div>
       </section>
