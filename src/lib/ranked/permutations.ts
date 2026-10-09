@@ -12,14 +12,14 @@ export const MAX_CHAPA_SIZE = 5;
  * Por que permutações (e não combinações)? Porque no Voto por Ranking a
  * ORDEM importa: [Ana, Bruno] (Ana em 1º) é um voto diferente de
  * [Bruno, Ana] (Bruno em 1º).
+/**
+ * Gera todas as permutações completas onde TODOS os candidatos registrados
+ * estão presentes na chapa (tamanho = número total de candidatos).
  *
- * Quantidade gerada: soma de n!/(n-k)! para k = 1..n
- *   n=1 → 1 · n=2 → 4 · n=3 → 15 · n=4 → 64 · n=5 → 325
- *
- * Ordem do resultado (define a numeração das chapas):
- *   1. chapas menores primeiro (k = 1, depois 2, …);
- *   2. dentro do mesmo tamanho, ordem lexicográfica pela posição de cada
- *      candidato na lista de entrada (ordem de cadastro).
+ * Exemplo:
+ *  - 3 candidatos (A, B, C) → 3! = 6 chapas completas
+ *  - 4 candidatos → 4! = 24 chapas completas
+ *  - 5 candidatos → 5! = 120 chapas completas
  */
 export function generateChapaRankings(candidateIds: readonly CandidateId[]): CandidateId[][] {
   if (candidateIds.length > MAX_CANDIDATES) {
@@ -29,12 +29,11 @@ export function generateChapaRankings(candidateIds: readonly CandidateId[]): Can
     throw new Error("A lista de candidatos contém ids duplicados.");
   }
 
-  const result: CandidateId[][] = [];
-  const maxSize = Math.min(candidateIds.length, MAX_CHAPA_SIZE);
+  if (candidateIds.length === 0) return [];
 
-  for (let size = 1; size <= maxSize; size++) {
-    collectPermutations(candidateIds, size, [], new Set<number>(), result);
-  }
+  const result: CandidateId[][] = [];
+  // Gera apenas permutações completas contendo todos os candidatos
+  collectPermutations(candidateIds, candidateIds.length, [], new Set<number>(), result);
   return result;
 }
 

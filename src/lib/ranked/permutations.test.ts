@@ -5,20 +5,22 @@ import { generateChapaRankings } from "./permutations";
 const ids = (n: number) => ["a", "b", "c", "d", "e"].slice(0, n);
 
 describe("generateChapaRankings", () => {
-  it("gera a quantidade correta de chapas para 0..5 candidatos", () => {
+  it("gera a quantidade correta de chapas completas (n!) para 0..5 candidatos", () => {
+    // 0!=0 (no candidates), 1!=1, 2!=2, 3!=6, 4!=24, 5!=120
     expect([0, 1, 2, 3, 4, 5].map((n) => generateChapaRankings(ids(n)).length)).toEqual([
-      0, 1, 4, 15, 64, 325,
+      0, 1, 2, 6, 24, 120,
     ]);
   });
 
-  it("ordena por tamanho e depois lexicograficamente", () => {
-    expect(generateChapaRankings(ids(2))).toEqual([["a"], ["b"], ["a", "b"], ["b", "a"]]);
+  it("ordena lexicograficamente contendo todos os candidatos", () => {
+    expect(generateChapaRankings(ids(2))).toEqual([["a", "b"], ["b", "a"]]);
   });
 
-  it("não gera chapas repetidas nem candidatos repetidos na mesma chapa", () => {
+  it("garante que todas as chapas contêm exatamente todos os 5 candidatos", () => {
     const rankings = generateChapaRankings(ids(5));
-    expect(new Set(rankings.map((r) => r.join())).size).toBe(325);
-    expect(rankings.every((r) => new Set(r).size === r.length)).toBe(true);
+    expect(rankings.length).toBe(120);
+    expect(new Set(rankings.map((r) => r.join())).size).toBe(120);
+    expect(rankings.every((r) => r.length === 5 && new Set(r).size === 5)).toBe(true);
   });
 
   it("rejeita mais de 5 candidatos", () => {

@@ -25,7 +25,6 @@ export function ChapaList({
   onSelect,
 }: ChapaListProps) {
   const [search, setSearch] = useState("");
-  const [sizeFilter, setSizeFilter] = useState<number | null>(null);
   const [firstPrefFilter, setFirstPrefFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const pageSize = 48;
@@ -38,10 +37,6 @@ export function ChapaList({
 
   const filteredChapas = useMemo(() => {
     return chapas.filter((chapa) => {
-      // Filtro de tamanho
-      if (sizeFilter !== null && chapa.candidateIds.length !== sizeFilter) {
-        return false;
-      }
 
       // Filtro de 1ª preferência
       if (firstPrefFilter !== null && chapa.candidateIds[0] !== firstPrefFilter) {
@@ -60,7 +55,7 @@ export function ChapaList({
 
       return true;
     });
-  }, [chapas, sizeFilter, firstPrefFilter, search, candidatesById]);
+  }, [chapas, firstPrefFilter, search, candidatesById]);
 
   const paginatedChapas = useMemo(() => {
     const start = (page - 1) * pageSize;
@@ -86,21 +81,6 @@ export function ChapaList({
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          <select
-            value={sizeFilter ?? ""}
-            onChange={(e) => {
-              setSizeFilter(e.target.value ? Number(e.target.value) : null);
-              setPage(1);
-            }}
-            className="h-9 px-3 rounded-md bg-background border border-input text-xs font-medium focus:ring-1 focus:ring-ring"
-          >
-            <option value="">Todas as posições (1 a 5)</option>
-            <option value="1">Apenas 1 candidato</option>
-            <option value="2">2 candidatos</option>
-            <option value="3">3 candidatos</option>
-            <option value="4">4 candidatos</option>
-            <option value="5">5 candidatos completos</option>
-          </select>
 
           <select
             value={firstPrefFilter ?? ""}
