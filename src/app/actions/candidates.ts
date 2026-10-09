@@ -50,7 +50,7 @@ export async function createCandidate(formData: FormData): Promise<ActionResult<
         });
 
       if (uploadError) {
-        throw new Error("Erro no upload da foto do candidato.");
+        throw new Error(`Erro no upload da foto: ${uploadError.message}`);
       }
 
       const { data: publicUrlData } = adminSupabase.storage
