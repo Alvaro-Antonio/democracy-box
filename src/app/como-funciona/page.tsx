@@ -325,6 +325,188 @@ export default async function HowItWorksPage() {
         </div>
       </section>
 
+      {/* SEÇÃO NOVA: APROFUNDAMENTO DA DISTRIBUIÇÃO E TRANSFERÊNCIA DOS VOTOS */}
+      <section className="rounded-3xl border-2 border-primary/30 bg-card/70 p-6 sm:p-10 space-y-10 backdrop-blur-xl shadow-2xl">
+        <div className="max-w-3xl space-y-3">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
+            <Repeat className="size-3.5" /> Mecânica Central do IRV
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-foreground">
+            Como Funciona a Distribuição dos Votos em Detalhes?
+          </h2>
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+            A distribuição (ou transferência) dos votos é o coração do <em>Instant-Runoff Voting</em>. 
+            Em vez de tratar o seu voto como uma única escolha descartável, a urna eletrônica interpreta a sua 
+            cédula como um <strong>conjunto de instruções condicionais</strong>: <em>&quot;Meu voto é de X. Mas se X não tiver chances reais de vitória, por favor, transfira meu apoio para Y.&quot;</em>
+          </p>
+        </div>
+
+        {/* 4 Princípios da Distribuição */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-2.5">
+            <div className="size-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-mono font-bold text-sm">
+              1
+            </div>
+            <h3 className="font-bold text-base text-foreground">Uma Cédula = Exatamente 1 Voto</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Nenhum eleitor tem dois votos ao mesmo tempo. Em qualquer rodada de apuração, a sua cédula 
+              está depositada em <strong>apenas um único candidato ativo</strong>. A distribuição apenas move 
+              o mesmo e único voto de lugar quando seu titular cai.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-2.5">
+            <div className="size-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-mono font-bold text-sm">
+              2
+            </div>
+            <h3 className="font-bold text-base text-foreground">Apenas as Cédulas do Eliminado se Movem</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Se você votou em um candidato que continua firme na disputa, <strong>seu voto não se move</strong>. 
+              Sua segunda e terceira opções permanecem guardadas na reserva e só serão lidas se o seu favorito 
+              vier a ser eliminado em rodadas posteriores.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-2.5">
+            <div className="size-8 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-mono font-bold text-sm">
+              3
+            </div>
+            <h3 className="font-bold text-base text-foreground">Distribuição Individualizada</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Quando um candidato é eliminado, seus votos <strong>não vão em bloco para o mesmo competidor</strong>. 
+              Cada cédula individual é analisada separadamente: quem marcou Bruno em 2º vai para Bruno; 
+              quem marcou Ana em 2º vai para Ana.
+            </p>
+          </div>
+
+          <div className="p-5 rounded-2xl border border-border/80 bg-background/80 space-y-2.5">
+            <div className="size-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-mono font-bold text-sm">
+              4
+            </div>
+            <h3 className="font-bold text-base text-foreground">Cédulas Esgotadas (Exhausted)</h3>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              Se você ranquear poucos candidatos e todos eles forem eliminados em rodadas sucessivas, 
+              sua cédula fica <em>&quot;esgotada&quot;</em>. Ela não vota contra ninguém e a meta de 50% 
+              é recalculada sobre as cédulas que ainda continuam ativas.
+            </p>
+          </div>
+        </div>
+
+        {/* Exemplos Práticos Passo a Passo com Cédulas Reais */}
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold tracking-tight text-foreground flex items-center gap-2">
+            <Layers className="size-5 text-primary" />
+            Exemplos Práticos: O Que Acontece Com a Sua Cédula?
+          </h3>
+          <p className="text-xs sm:text-sm text-muted-foreground">
+            Acompanhe o caminho percorrido pelo voto de 3 eleitores diferentes durante uma eleição disputada:
+          </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Caso A: Eleitor do Candidato Eliminado */}
+            <div className="p-4 rounded-2xl border border-emerald-500/40 bg-emerald-950/20 space-y-3">
+              <div className="flex items-center justify-between text-xs font-bold text-emerald-400">
+                <span>Cenário A: Migração Imediata</span>
+                <span className="px-2 py-0.5 rounded bg-emerald-500/20">Voto transferido</span>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 rounded-lg bg-background/80 border border-rose-500/30 flex items-center justify-between">
+                  <span>1º Carla (Menos votada)</span>
+                  <span className="text-[10px] font-bold text-rose-400">Eliminada ❌</span>
+                </div>
+                <div className="flex justify-center text-emerald-400 font-bold text-xs py-0.5">
+                  ↓ Cédula é aberta: transfere para a 2ª opção
+                </div>
+                <div className="p-2 rounded-lg bg-emerald-500/10 border border-emerald-500/40 font-semibold text-emerald-300 flex items-center justify-between">
+                  <span>2º Bruno (Ativo)</span>
+                  <span className="text-[10px] font-bold text-emerald-400">+1 Voto para Bruno ✅</span>
+                </div>
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                O voto não foi perdido! O eleitor ajudou Carla enquanto ela disputou e, quando ela caiu, 
+                seu voto fortaleceu diretamente a sua segunda opção.
+              </p>
+            </div>
+
+            {/* Caso B: Eleitor de um Candidato que segue Vivo */}
+            <div className="p-4 rounded-2xl border border-primary/40 bg-primary/5 space-y-3">
+              <div className="flex items-center justify-between text-xs font-bold text-primary">
+                <span>Cenário B: Estabilidade</span>
+                <span className="px-2 py-0.5 rounded bg-primary/20">Voto intacto</span>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 rounded-lg bg-background/80 border border-primary/40 flex items-center justify-between font-semibold">
+                  <span>1º Ana (Continua na disputa)</span>
+                  <span className="text-[10px] font-bold text-primary">Permanece com Ana ✅</span>
+                </div>
+                <div className="flex justify-center text-muted-foreground text-xs py-0.5">
+                  — 2ª opção fica guardada na reserva
+                </div>
+                <div className="p-2 rounded-lg bg-muted/30 border border-border/40 text-muted-foreground flex items-center justify-between">
+                  <span>2º Bruno</span>
+                  <span className="text-[10px]">Não acionada</span>
+                </div>
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                Como Ana não foi eliminada, a cédula nunca abre a 2ª opção. O voto permanece 100% creditado para Ana.
+              </p>
+            </div>
+
+            {/* Caso C: Eliminações em Cadeia */}
+            <div className="p-4 rounded-2xl border border-amber-500/40 bg-amber-950/20 space-y-3">
+              <div className="flex items-center justify-between text-xs font-bold text-amber-400">
+                <span>Cenário C: Salto Sucessivo</span>
+                <span className="px-2 py-0.5 rounded bg-amber-500/20">Cascata</span>
+              </div>
+              <div className="space-y-2 text-xs">
+                <div className="p-2 rounded-lg bg-background/80 border border-border/40 flex items-center justify-between line-through text-muted-foreground">
+                  <span>1º Daniel</span>
+                  <span className="text-[10px] text-rose-400 font-bold">Caiu na R1 ❌</span>
+                </div>
+                <div className="p-2 rounded-lg bg-background/80 border border-border/40 flex items-center justify-between line-through text-muted-foreground">
+                  <span>2º Carla</span>
+                  <span className="text-[10px] text-rose-400 font-bold">Caiu na R2 ❌</span>
+                </div>
+                <div className="p-2 rounded-lg bg-amber-500/10 border border-amber-500/40 font-semibold text-amber-300 flex items-center justify-between">
+                  <span>3º Bruno</span>
+                  <span className="text-[10px] font-bold text-amber-400">+1 Voto na R3 ✅</span>
+                </div>
+              </div>
+              <p className="text-[11px] text-muted-foreground leading-relaxed">
+                Mesmo após duas eliminações consecutivas, a cédula continuou viva e pulou para a 3ª preferência!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Perguntas Frequentes sobre a Distribuição */}
+        <div className="border-t border-border/60 pt-6 space-y-4">
+          <h3 className="text-base font-bold text-foreground">Perguntas Frequentes sobre a Distribuição</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-muted-foreground">
+            <div className="p-4 rounded-xl bg-muted/20 border border-border/40 space-y-1.5">
+              <strong className="text-foreground block font-semibold">
+                O candidato que ficou em 1º na primeira rodada sempre vence?
+              </strong>
+              <p className="leading-relaxed">
+                Não necessariamente. Se o primeiro colocado for rejeitado pela maioria dos demais eleitores, 
+                um candidato de consenso em 2º lugar pode receber a maior parte das transferências e virar a disputa 
+                legitimamente, porque agrada a mais pessoas no somatório geral.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-muted/20 border border-border/40 space-y-1.5">
+              <strong className="text-foreground block font-semibold">
+                Indicar uma 2ª opção pode prejudicar a minha 1ª opção?
+              </strong>
+              <p className="leading-relaxed">
+                <strong>Nunca.</strong> A matemática do Voto por Ranking garante que a sua 2ª opção jamais 
+                competirá com a sua 1ª opção. A 2ª escolha só é olhada se a sua 1ª já estiver matematicamente eliminada.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* SEÇÃO 3: COMPARAÇÃO COM VOTO TRADICIONAL */}
       <section className="rounded-3xl border border-border/60 bg-card/40 p-6 sm:p-8 space-y-6">
         <h2 className="text-xl sm:text-2xl font-bold tracking-tight">
