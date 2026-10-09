@@ -179,3 +179,9 @@ npm run build
 - **Garantia de Voto Secreto**: A separação entre as tabelas `votes` e `voter_receipts` assegura que nenhuma consulta no banco consiga associar o eleitor à sua chapa escolhida.
 - **Acesso Atômico por RPCs**: As funções `cast_vote`, `has_voted`, `validate_vote` e `chapa_vote_counts` rodam com `SECURITY DEFINER` e `search_path` restrito, impedindo o vazamento de contagens parciais antes do encerramento oficial da eleição.
 - **Upload Seguro de Arquivos**: O tipo MIME e os primeiros bytes dos arquivos de foto são inspecionados no servidor para evitar uploads maliciosos.
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a [Licença MIT](LICENSE). Sinta-se livre para utilizar, modificar e distribuir para fins acadêmicos, cívicos e educacionais.
