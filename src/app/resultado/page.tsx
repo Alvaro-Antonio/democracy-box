@@ -5,6 +5,7 @@ import { ChapaVotesTable } from "@/components/chapa-votes-table";
 import { EmptyState } from "@/components/empty-state";
 import { PageHeader } from "@/components/page-header";
 import { ResultsSummary } from "@/components/results-summary";
+import { RoundsMatrixTable } from "@/components/rounds-matrix-table";
 import { RoundsTable } from "@/components/rounds-table";
 import { Button } from "@/components/ui/button";
 import { getElectionResults } from "@/lib/election/results";
@@ -49,9 +50,16 @@ export default async function ResultsPage() {
 
       <ResultsSummary irv={data.irv} candidates={data.candidates} />
 
+      {/* Quadro comparativo: quantidade de votos de cada candidato por rodada */}
+      <RoundsMatrixTable
+        rounds={data.irv.rounds}
+        candidates={data.candidates}
+        winnerId={data.irv.winner}
+      />
+
       <div className="space-y-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight">Evolução Rodada a Rodada</h2>
+          <h2 className="text-xl font-bold tracking-tight">Detalhamento Gráfico por Rodada</h2>
           <p className="text-xs text-muted-foreground">
             Acompanhe a eliminação do último colocado e a redistribuição automática de suas cédulas
             até que um candidato conquiste mais de 50% dos votos ativos.
